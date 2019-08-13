@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <UrlForm />
+    <UrlList :urls="urls"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UrlForm from './components/UrlForm.vue'
+import UrlList from './components/UrlList.vue'
+import { db } from './firebase'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      urls: [],
+    }
+  },
+  firestore: {
+    urls: db.collection('urls'),
+  },
   components: {
-    HelloWorld
+    UrlForm,
+    UrlList,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

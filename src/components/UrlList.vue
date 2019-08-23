@@ -6,7 +6,7 @@
     <ul v-else>
       <li v-for="url in urls.data" :key="url.id">
         <div>https://zzu.li/<b>{{ url.id }}</b> &rarr; {{ url.origin }}</div>
-        <div>Shortened by {{ url.owner }} <button v-if="url.owner === user.data.userName" @click="deleteShortened(url.id)">Delete</button></div>
+        <div>Shortened by {{ url.owner.username }} <button v-if="url.owner.uid === user.data.uid" @click="deleteShortened(url.id)">Delete</button></div>
       </li>
     </ul>
   </div>

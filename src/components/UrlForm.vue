@@ -20,7 +20,8 @@ export default {
   },
   methods: {
     createShortened: async function () {
-      const data = { origin: this.url.origin, created_at: firebase.firestore.Timestamp.fromDate(new Date()), owner: this.$store.state.user.info.userName }
+      const userData = this.$store.state.user.data
+      const data = { origin: this.url.origin, created_at: firebase.firestore.Timestamp.fromDate(new Date()), owner: { uid: userData.uid, username: userData.userName } }
       await db.collection('urls').doc(this.url.shortened).set(data)
       this.url = { shortened: '', origin: '' }
     }

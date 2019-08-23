@@ -1,29 +1,36 @@
 <template>
   <div id="app">
-    <UrlForm />
-    <UrlList :urls="urls"/>
+    <Navbar />
+    <div v-if="user.data.uid">
+      <UrlForm />
+      <UrlList />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Navbar from './components/Navbar.vue'
 import UrlForm from './components/UrlForm.vue'
 import UrlList from './components/UrlList.vue'
 import { db } from './firebase'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      urls: [],
-    }
+  computed: {
+    ...mapState({
+      urls: 'urls',
+      user: 'user'
+    })
   },
-  firestore: {
-    urls: db.collection('urls'),
+  created () {
+    this.$store.dispatch('setUrlsRef', db.collection('urls').orderBy('created_at', 'desc'))
   },
   components: {
+    Navbar,
     UrlForm,
     UrlList,
-  }
+  }, 
 }
 </script>
 

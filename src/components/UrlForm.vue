@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { db, serverTimestamp } from '../firebase'
+import firebase, { db } from '../firebase';
 
 export default {
   name: 'UrlForm',
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     createShortened: async function () {
-      const data = { origin: this.url.origin, created_at: serverTimestamp }
+      const data = { origin: this.url.origin, created_at: firebase.firestore.Timestamp.fromDate(new Date()), owner: this.$store.state.user.info.userName }
       await db.collection('urls').doc(this.url.shortened).set(data)
       this.url = { shortened: '', origin: '' }
     }

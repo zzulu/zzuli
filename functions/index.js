@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -16,10 +16,11 @@ const app = express();
 app.get('/:shortened', async (req, res) => {
   const doc = await db.collection('urls').doc(req.params.shortened).get();
   
-  if (!doc.exists) {
-    res.send('No such shortened URL!');
-  } else {
+  if (doc.exists) {
     res.redirect(301, `${doc.data().origin}`);
+  } else {
+    // To Do: Make 404 Page
+    res.send('No such shortened URL!');
   }
 });
 

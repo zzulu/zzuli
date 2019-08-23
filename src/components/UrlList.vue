@@ -1,9 +1,12 @@
 <template>
   <div class="urls">
-    <ul>
-      <li v-for="url in urls" :key="url.id">
-        {{ url.id }} &rarr; {{ url.origin }}
-        <button @click="deleteShortened(url.id)">Delete</button>
+    <div v-if="urls.loading">
+      Loading...
+    </div>
+    <ul v-else>
+      <li v-for="url in urls.data" :key="url.id">
+        <div>https://zzu.li/<b>{{ url.id }}</b> &rarr; {{ url.origin }}</div>
+        <div>Shortened by {{ url.owner }} <button v-if="url.owner === user.data.userName" @click="deleteShortened(url.id)">Delete</button></div>
       </li>
     </ul>
   </div>
@@ -11,11 +14,15 @@
 
 <script>
 import { db } from '../firebase'
+import { mapState } from 'vuex'
 
 export default {
   name: 'UrlList',
-  props: {
-    urls: Array
+  computed: {
+    ...mapState({
+      urls: 'urls',
+      user: 'user',
+    })
   },
   methods: {
     deleteShortened: function (docId) {

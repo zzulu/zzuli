@@ -20,7 +20,7 @@ app.get('/:shortened', async (req, res) => {
     res.redirect(301, `${doc.data().origin}`);
   } else {
     // To Do: Make 404 Page
-    res.send('No such shortened URL!');
+    res.status(404).send('No such shortened URL!');
   }
 });
 

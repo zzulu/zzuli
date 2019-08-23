@@ -4,8 +4,8 @@ import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
-  authDomain: "zzuli-a.firebaseapp.com",
-  projectId: "zzuli-a",
+  authDomain: 'zzu.li',
+  projectId: 'zzuli-a',
 };
 
 firebase.initializeApp(firebaseConfig);

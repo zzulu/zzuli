@@ -1,6 +1,6 @@
 <template>
   <form v-on:submit.prevent="createShortened">
-    <input type="text" v-model="url.shortened"> &rarr; <input type="text" v-model="url.origin">
+    <input type="text" v-model="url.origin" placeholder="https://whatever-a-long-url-you-have.com"> &rarr; https://zzu.li/<input type="text" v-model="url.shortened">
     <input type="submit" value="Shorten!">
   </form>
 </template>
@@ -21,9 +21,19 @@ export default {
   methods: {
     createShortened: async function () {
       const userData = this.$store.state.user.data
-      const data = { origin: this.url.origin, created_at: firebase.firestore.Timestamp.fromDate(new Date()), owner: { uid: userData.uid, username: userData.userName } }
+      const data = {
+        origin: this.url.origin,
+        created_at: firebase.firestore.Timestamp.fromDate(new Date()),
+        owner: {
+          uid: userData.uid,
+          username: userData.userName,
+        },
+      }
       await db.collection('urls').doc(this.url.shortened).set(data)
-      this.url = { shortened: '', origin: '' }
+      this.url = {
+        shortened: '',
+        origin: '',
+      }
     }
   }
 }

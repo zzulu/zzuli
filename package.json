@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "clipboard": "^2.0.4",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.8",
     "firebase": "^6.3.5",

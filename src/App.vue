@@ -14,6 +14,8 @@ import Navbar from './components/Navbar.vue'
 import UrlForm from './components/UrlForm.vue'
 import UrlList from './components/UrlList.vue'
 import { db } from './firebase'
+import ClipboardJS from 'clipboard'
+new ClipboardJS('.btn')
 
 export default {
   name: 'app',

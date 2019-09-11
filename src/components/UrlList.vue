@@ -7,6 +7,7 @@
       <li v-for="url in urls.data" :key="url.id">
         <div>
           <span>{{ url.origin }}</span> &rarr; <span>https://zzu.li/{{ url.id }}</span>
+          <button class="btn" :data-clipboard-text="'https://zzu.li/' + url.id">copy</button>
         </div>
         <div>Shortened by {{ url.owner.username }} <button v-if="url.owner.uid === user.data.uid" @click="deleteShortened(url.id)">Delete</button></div>
       </li>

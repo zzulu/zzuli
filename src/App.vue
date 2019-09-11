@@ -15,7 +15,6 @@ import UrlForm from './components/UrlForm.vue'
 import UrlList from './components/UrlList.vue'
 import { db } from './firebase'
 import ClipboardJS from 'clipboard'
-new ClipboardJS('.btn')
 
 export default {
   name: 'app',
@@ -27,6 +26,7 @@ export default {
   },
   created () {
     this.$store.dispatch('setUrlsRef', db.collection('urls').orderBy('created_at', 'desc'))
+    new ClipboardJS('.btn')
   },
   components: {
     Navbar,

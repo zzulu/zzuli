@@ -10,29 +10,22 @@
 
 <script>
 import { mapState } from 'vuex'
-import Navbar from './components/Navbar.vue'
-import UrlForm from './components/UrlForm.vue'
-import UrlList from './components/UrlList.vue'
-import { db } from './firebase'
-import ClipboardJS from 'clipboard'
+import Navbar from '@/components/Navbar.vue'
+import UrlForm from '@/components/UrlForm.vue'
+import UrlList from '@/components/UrlList.vue'
 
 export default {
   name: 'app',
-  computed: {
-    ...mapState({
-      urls: 'urls',
-      user: 'user'
-    })
-  },
-  created () {
-    this.$store.dispatch('setUrlsRef', db.collection('urls').orderBy('created_at', 'desc'))
-    new ClipboardJS('.btn')
-  },
   components: {
     Navbar,
     UrlForm,
     UrlList,
-  }, 
+  },
+  computed: {
+    ...mapState({
+      user: 'user',
+    }),
+  },
 }
 </script>
 

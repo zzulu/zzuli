@@ -9,33 +9,34 @@
           <span>{{ url.origin }}</span> &rarr; <span>https://zzu.li/{{ url.id }}</span>
           <button class="btn" :data-clipboard-text="'https://zzu.li/' + url.id">copy</button>
         </div>
-        <div>Shortened by {{ url.owner.username }} <button v-if="url.owner.uid === user.data.uid" @click="deleteShortened(url.id)">Delete</button></div>
+        <div><button @click="deleteUrl(url.id)">Delete</button></div>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { db } from '../firebase'
 import { mapState } from 'vuex'
+import ClipboardJS from 'clipboard'
 
 export default {
   name: 'UrlList',
   computed: {
     ...mapState({
       urls: 'urls',
-      user: 'user',
     })
   },
   methods: {
-    deleteShortened: function (docId) {
-      db.collection('urls').doc(docId).delete()
+    deleteUrl: function (urlId) {
+      this.$store.dispatch('deleteUrl', urlId)
     }
-  }
+  },
+  mounted: function () {
+    new ClipboardJS('.btn')
+  },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

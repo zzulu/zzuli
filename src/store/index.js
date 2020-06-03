@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     urls: {
       loading: true,
-      data: []
+      data: [],
     },
     user: {
       loading: true,
@@ -17,9 +17,8 @@ export default new Vuex.Store({
         uid: '',
         email: '',
         displayName: '',
-        userName: '',
       }
-    }
+    },
   },
   mutations,
   actions,

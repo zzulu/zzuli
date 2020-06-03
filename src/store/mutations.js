@@ -1,38 +1,31 @@
-// state를 변화 시키기만 함!
-
 import { vuexfireMutations } from 'vuexfire'
 
 export default {
-  ...vuexfireMutations, // for 'urls'
+  ...vuexfireMutations,
 
-  setUrlsLoading (state, loading) {
+  setUrls: function (state, urls) {
+    state.urls.data = urls
+  },
+
+  setUrlsLoading: function (state, loading) {
     state.urls.loading = loading
   },
 
-  setUser (state, userData) {
-    const userName = userData.email.split('@')[0]
-    state.user.data = { ...userData, userName: userName }
+  setUser: function (state, userData) {
+    state.user.data = {
+      ...userData
+    }
   },
 
-  clearUser (state) {
-    state.user.data = { uid: '', email: '', displayName: '', userName: '' }
+  clearUser: function (state) {
+    state.user.data = {
+      uid: '',
+      email: '',
+      displayName: '',
+    }
   },
 
-  setUserLoading (state, loading) {
+  setUserLoading: function (state, loading) {
     state.user.loading = loading
   },
-
-  // - Examples -
-  // addTodo (state, todo) {
-  //   state.todos.push(todo)
-  // },
-
-  // removeTodo (state, todo) {
-  //   state.todos.splice(state.todos.indexOf(todo), 1)
-  // },
-
-  // editTodo (state, { todo, text = todo.text, done = todo.done }) {
-  //   todo.text = text
-  //   todo.done = done
-  // }
 }

@@ -8,9 +8,11 @@
         <a @click="signOut">Logout</a>
       </li>
     </ul>
-    <div v-else>
-      <button id="signin-with-google" @click="signInWithGoogle">Sign in with Google</button>
-    </div>
+    <ul v-else class="nav__item-list">
+      <li class="nav__item">
+        <a id="signin-with-google" @click="signInWithGoogle">Sign in with Google</a>
+      </li>
+    </ul>
   </nav>
 </template>
 

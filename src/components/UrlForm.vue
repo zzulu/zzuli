@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="createUrl" class="form">
-    <div class="pill form__wrapper col-12 col-md-auto">
+    <div class="form__wrapper pill col-12 col-md-auto bg-white">
       <ul class="errors" v-show="validation.show">
         <li v-show="validation.origin.has_error">
           <span v-for="message in validation.origin.messages" :key="message">{{ message }}</span>

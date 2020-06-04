@@ -1,6 +1,6 @@
 <template>
   <li class="url">
-    <div class="url__meta pill col-12 col-md">
+    <div class="url__meta pill col-12 col-md bg-white">
       <div class="url__origin">
         {{ url.origin }}
       </div>

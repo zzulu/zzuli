@@ -19,6 +19,21 @@ export default new Vuex.Store({
         displayName: '',
       }
     },
+    url: {
+      origin: '',
+      shortened: '',
+    },
+    validation: {
+      show: false,
+      origin: {
+        has_error: false,
+        messages: [],
+      },
+      shortened: {
+        has_error: false,
+        messages: [],
+      },
+    },
   },
   mutations,
   actions,

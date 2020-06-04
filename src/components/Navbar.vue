@@ -1,8 +1,5 @@
 <template>
-  <nav v-if="user.loading">
-    Loading...
-  </nav>
-  <nav v-else>
+  <nav v-if="!user.loading">
     <div v-if="user.data.uid">
       <span>{{ user.data.displayName }} </span>
       <button @click="signOut">Sign out</button>

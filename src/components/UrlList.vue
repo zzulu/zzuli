@@ -1,26 +1,19 @@
 <template>
-  <div class="urls">
-    <div v-if="urls.loading">
-      Loading...
-    </div>
-    <ul v-else>
-      <li v-for="url in urls.data" :key="url.id">
-        <div>
-          <span>{{ url.origin }}</span> &rarr; <span>https://zzu.li/{{ url.id }}</span>
-          <button class="btn" :data-clipboard-text="'https://zzu.li/' + url.id">copy</button>
-        </div>
-        <div><button @click="deleteUrl(url.id)">Delete</button></div>
-      </li>
-    </ul>
-  </div>
+  <transition-group v-if="!urls.loading" tag="ul" name="url-list" class="url__wrapper">
+    <url-item v-for="url in urls.data" :key="url.id" :url="url" @delete-url="deleteUrl"></url-item>
+  </transition-group>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import ClipboardJS from 'clipboard'
+import UrlItem from '@/components/UrlItem.vue'
 
 export default {
   name: 'UrlList',
+  components: {
+    UrlItem,
+  },
   computed: {
     ...mapState({
       urls: 'urls',

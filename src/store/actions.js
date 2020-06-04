@@ -1,5 +1,6 @@
 import { firestoreAction } from 'vuexfire'
 import firebase, { db } from '@/firebase'
+import validate from 'validate.js'
 
 export default {
   // Firebase binding with Vuexfire
@@ -15,37 +16,54 @@ export default {
     }
   ),
 
-  // Use Firebase SDK
-  // setUrls: function ({ state, commit }) {
-  //   const uid = state.user.data.uid
-  //   db.collection('urls').where('owner_uid', '==', uid).orderBy('created_at', 'desc').get()
-  //     .then((querySnapshot) => {
-  //       const documents = querySnapshot.docs.map(doc => doc.data())
-  //       commit('setUrls', documents)
-  //       commit('setUrlsLoading', false)
-  //     })
-  // },
-
-  createUrl: function ({ state }, { shortened, origin }) {
-    const data = {
-      origin: origin,
-      created_at: firebase.firestore.Timestamp.fromDate(new Date()),
-      owner_uid: state.user.data.uid,
+  createUrl: async function ({ state, commit }) {
+    const origin = state.url.origin
+    const shortened = state.url.shortened
+    const messages = {
+      'origin': [],
+      'shortened': [],
     }
-    
-    const urlRef = db.collection('urls').doc(shortened)
-    urlRef.get().then((doc) => {
-      if (doc.exists) {
-        console.log(doc.data())
-      } else {
-        urlRef.set(data)
-          .catch((err) => {
-            console.log(err.code)
-            console.log(err.name)
-            console.log(err.message)
-          })
+    // Validate
+    if (!origin) {
+      messages.origin.push('Origin URL can not be blank.')
+    } else {
+      const v = validate({ origin: origin }, {origin: { url: true }})
+      if (v) {
+        messages.origin = messages.origin.concat(v.origin)
       }
-    })
+    }
+
+    if (!shortened) {
+      messages.shortened.push('Shortened URL can not be blank.')
+    } else {
+      const doc = await db.collection('urls').doc(shortened).get()
+      if (doc.exists) {
+        messages.shortened.push('Shortened URL is already exists.')
+      }
+    }
+
+    // Create
+    if (messages.origin.length > 0 || messages.shortened.length > 0) {
+      commit('setValidation', messages)
+    } else {
+      // Create
+      const data = {
+        origin: origin,
+        created_at: firebase.firestore.Timestamp.fromDate(new Date()),
+        owner_uid: state.user.data.uid,
+      }
+
+      db.collection('urls').doc(shortened).set(data)
+        .then(() => {
+          commit('clearValidation')
+          commit('clearUrl')
+        })
+        .catch((err) => {
+          console.log(err.code)
+          console.log(err.name)
+          console.log(err.message)
+        })
+    }
   },
 
   deleteUrl: function (context, urlId) {

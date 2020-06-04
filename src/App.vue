@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <div v-if="user.data.uid">
+    <div v-if="user.data.uid" class="container">
       <UrlForm />
       <UrlList />
     </div>

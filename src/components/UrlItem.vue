@@ -25,7 +25,9 @@ export default {
   },
   methods: {
     deleteUrl: function () {
-      this.$emit('delete-url', this.url.id);
+      if (window.confirm("Are you sure to delete?")) { 
+        this.$emit('delete-url', this.url.id);
+      }
     },
   },
 }

@@ -1,10 +1,16 @@
 <template>
   <nav v-if="!user.loading">
-    <div v-if="user.data.uid">
-      <span>{{ user.data.displayName }} </span>
-      <button @click="signOut">Sign out</button>
+    <ul v-if="user.data.uid" class="nav__item-list">
+      <li class="nav__item">
+        <span>{{ user.data.email }}</span>
+      </li>
+      <li class="nav__item">
+        <a @click="signOut">Logout</a>
+      </li>
+    </ul>
+    <div v-else>
+      <button id="signin-with-google" @click="signInWithGoogle">Sign in with Google</button>
     </div>
-    <button v-else id="signin-with-google" @click="signInWithGoogle">Sign in with Google</button>
   </nav>
 </template>
 
@@ -45,9 +51,9 @@ export default {
         // Sign-out successful.
         this.$store.dispatch('clearUser')
       })
-      // .catch(function(error) {
-      //   // An error happened.
-      // });
+      .catch(function(err) {
+        console.log(err)
+      });
     },
   },
   mounted: function () {
@@ -56,6 +62,44 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+/* Navbar */
 
+.nav__item-list {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+@media (max-width: 575px) {
+  .nav__item-list {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.nav__item {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav__item > a,
+.nav__item > span {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  color: #495057;
+  border-radius: 16px;
+  background-color: none;
+  transition: background-color .15s;
+}
+
+.nav__item > a:hover,
+.nav__item > a:focus {
+  cursor: pointer;
+  text-decoration: none;
+  color: #212529;
+  background-color: #f1f3f5;
+  transition: background-color .15s;
+}
 </style>

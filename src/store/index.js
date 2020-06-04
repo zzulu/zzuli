@@ -21,7 +21,7 @@ export default new Vuex.Store({
     },
     url: {
       origin: '',
-      shortened: '',
+      shortened: Math.random().toString(36).substring(2, 7),
     },
     validation: {
       show: false,

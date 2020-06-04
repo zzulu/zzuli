@@ -30,5 +30,68 @@ export default {
 </script>
 
 <style>
+@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
+body {
+  font-family: 'Spoqa Han Sans', sans-serif;
+  color: #343a40;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #adb5bd;
+}
+
+
+/* Pill */
+
+.pill {
+  border: 1px solid #ced4da;
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  box-shadow: 0px 2px 8px #e9ecef;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .form > .pill:first-child {
+    border-radius: 16px 16px 0 0;
+  }
+
+  .form > .pill:last-child {
+    border-radius: 0 0 16px 16px;
+  }
+
+  .url > .pill:nth-child(1) {
+    border-radius: 16px 16px 0 0;
+  }
+
+  .url > .pill:nth-child(2) {
+    border-top-width: 0;
+    border-radius: 0 0 0 16px;
+  }
+
+  .url > .pill:nth-child(3) {
+    border-radius: 0 0 16px 0;
+  }
+}
+
+.pill--red {
+  border-color: #fa5252;
+  box-shadow: 0px 2px 8px #ffc9c9;
+}
+
+.pill--violet {
+  border-color: #7950f2;
+  box-shadow: 0px 2px 8px #d0bfff;
+}
 </style>

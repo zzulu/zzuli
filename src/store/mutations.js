@@ -14,7 +14,7 @@ export default {
   clearUrl: function (state) {
     state.url = {
       origin: '',
-      shortened: '',
+      shortened: Math.random().toString(36).substring(2, 7),
     }
   },
 

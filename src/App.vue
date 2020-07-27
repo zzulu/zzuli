@@ -101,7 +101,8 @@ button:focus {
 }
 
 .logo {
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
+  margin-top: 1.5rem;
 }
 </style>

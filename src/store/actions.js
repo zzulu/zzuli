@@ -27,7 +27,14 @@ export default {
     if (!origin) {
       messages.origin.push('Origin URL can not be blank.')
     } else {
-      const v = validate({ origin: origin }, {origin: { url: true }})
+      const v = validate({ origin: origin }, {
+        origin: {
+          url: {
+            message: 'URL is not valid.', // Origin URL is not valid.
+          },
+        }
+      })
+
       if (v) {
         messages.origin = messages.origin.concat(v.origin)
       }

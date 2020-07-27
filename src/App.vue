@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <Navbar />
-    <div v-if="user.data.uid" class="container">
-      <UrlForm />
-      <UrlList />
-    </div>
+    <template v-if="!user.loading">
+      <div v-if="user.data.uid" class="container">
+        <UrlForm />
+        <UrlList />
+      </div>
+      <div v-else class="container text-center">
+        <img src="./assets/images/logo.png" alt="logo" class="logo">
+      </div>
+    </template>
   </div>
 </template>
 
@@ -93,5 +98,10 @@ button:focus {
 .pill--violet {
   border-color: #7950f2;
   box-shadow: 0px 2px 8px #d0bfff;
+}
+
+.logo {
+  max-width: 400px;
+  width: 100%;
 }
 </style>

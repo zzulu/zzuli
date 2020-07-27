@@ -1,3 +1,3 @@
-# zzuli, URL Shortener
+# zzu.li, URL Shortener
 
 Vue + Firebase(Functions, Firestore, Hosting)

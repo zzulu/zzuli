@@ -26,15 +26,15 @@ export default {
     initClipboardJS: function () {
       const clipboard = new ClipboardJS('.copy', {
         text: function(trigger) {
-          return trigger.previousElementSibling.lastChild.innerText;
+          return trigger.previousElementSibling.innerText
         },
       });
 
       clipboard.on('success', function(e) {
-        const copiedElement = e.trigger.previousElementSibling.lastChild
-        copiedElement.classList.add('copying')
+        const copiedElement = e.trigger.previousElementSibling
+        copiedElement.classList.add('copied')
         window.setTimeout(() => {
-          copiedElement.classList.remove('copying')
+          copiedElement.classList.remove('copied')
         }, 1800);
       });
     },

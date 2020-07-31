@@ -75,6 +75,7 @@ export default {
 @media (max-width: 767px) {
   .form {
     flex-wrap: wrap;  
+    margin-top: 1.5rem;
   }
 }
 

@@ -4,15 +4,15 @@
       <div class="url__origin">
         {{ url.origin }}
       </div>
-      <div class="url__shortened">
-        https://zzu.li/{{ url.id }}
+      <div class="d-flex">
+        <div class="url__shortened">
+          https://zzu.li/{{ url.id }}
+        </div>
+        <img src="../assets/images/copy.svg" alt="Copy" class="copy">
       </div>
     </div>
-    <button class="pill button button--white copy col-6 col-md-auto">
-      Copy
-    </button>
-    <button @click="deleteUrl" class="pill pill--red button button--red col-6 col-md-auto">
-      Delete
+    <button @click="deleteUrl" class="pill pill--red button button--red col-12 col-md-auto">
+      <img src="../assets/images/trash.svg" alt="Trash">
     </button>
   </li>
 </template>
@@ -111,7 +111,20 @@ export default {
   transition: background-color .15s;
 }
 
-.copying {
-  color: #4263eb;
+.copy {
+  cursor: pointer;
+  margin-left: .5rem;
+  filter: opacity(0.4);
+  transition: filter .15s;
+}
+
+.copy:hover {
+  filter: opacity(0.7);
+}
+
+.copy:focus,
+.copy:active {
+  filter: opacity(1);
+  transition: filter 0;
 }
 </style>

@@ -35,8 +35,6 @@ export default {
 </script>
 
 <style>
-@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
 body {
   font-family: 'Spoqa Han Sans', sans-serif;
   color: #343a40;
@@ -68,25 +66,16 @@ button:focus {
 }
 
 @media (max-width: 767px) {
-  .form > .pill:first-child {
+  .form > .pill:first-child,
+  .url > .pill:first-child {
     border-radius: 16px 16px 0 0;
   }
 
-  .form > .pill:last-child {
+  .form > .pill:last-child,
+  .url > .pill:last-child {
     border-radius: 0 0 16px 16px;
-  }
-
-  .url > .pill:nth-child(1) {
-    border-radius: 16px 16px 0 0;
-  }
-
-  .url > .pill:nth-child(2) {
-    border-top-width: 0;
-    border-radius: 0 0 0 16px;
-  }
-
-  .url > .pill:nth-child(3) {
-    border-radius: 0 0 16px 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 

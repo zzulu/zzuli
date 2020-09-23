@@ -58,7 +58,7 @@ button:focus {
 /* Pill */
 
 .pill {
-  border: 1px solid #ced4da;
+  border: 1px solid #e9ecef;
   border-radius: 16px;
   padding: 1.25rem 2rem;
   box-shadow: 0px 2px 8px #e9ecef;

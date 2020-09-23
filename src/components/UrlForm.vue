@@ -14,11 +14,11 @@
       </div>
       <div class="form__shortened" :class="validationClass('shortened')">
         <span>https://zzu.li/</span>
-        <input type="text" v-model="shortened" authcomplete="off" spellcheck="false">              
+        <input type="text" v-model="shortened" authcomplete="off" spellcheck="false">
       </div>
     </div>
     <button class="pill pill--violet button button--violet col-12 col-md-auto">
-      Shorten
+      <img src="../assets/images/plus.svg" alt="Shorten">
     </button>
   </form>
 </template>
